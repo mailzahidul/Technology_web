@@ -1,0 +1,357 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load social_share %}
+
+
+{% block content %}
+        
+<!-- Page Banner Start -->
+<div class="section page-banner-section" style="background-image: url({% static 'assets/images/page-banner.jpg' %});">
+    <div class="shape-2"></div>
+    <div class="container">
+        <div class="page-banner-wrap">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Page Banner Content Start -->
+                    <div class="page-banner text-center">
+                        <h2 class="title">Project Details</h2>
+                        <ul class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Project Details</li>
+                        </ul>
+                    </div>
+                    <!-- Page Banner Content End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Banner End -->
+
+<!-- Blog Details Start -->
+<div class="section blog-details-section section-padding">
+    <div class="container">
+        <!-- Blog Details Wrap Start -->
+        <div class="blog-details-wrap">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Blog Details Post Start -->
+                    <div class="blog-details-post">
+                        <!-- Single Blog Start -->
+                        <div class="single-blog">
+                            <div class="blog-img">
+                                <a href="#"><img src="{{ single_project.image.url }}" alt=""></a>
+                                <div class="top-meta">
+                                    <span class="date"><span>{{ single_project.create_date|date:"d" }}</span>{{ single_project.create_date|date:"M" }}</span>
+                                </div>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <!-- <span><i class="fas fa-user"></i> <a href="#"></a></span>
+                                    <span><i class="far fa-comments"></i> 0 Comments</span> -->
+                                </div>
+                                <h3 class="title">{{ single_project.title }}</h3>
+                            </div>
+                        </div>
+                        <!-- Single Blog End -->
+                        <div class="blog-details-content">
+                            <!-- Blog Blockquote Start -->
+                            <!-- <div class="blog-quote">
+                                <blockquote class="blockquote">
+                                    <p>The basic premise of search engine reputation management is to use the following three strategies to accomplish the goal of creating a completely positive first page of search engine results for a specific term…</p>
+                                </blockquote>
+                            </div> -->
+                            <!-- Blog Blockquote End -->
+                            <!-- Blog Inner Img Start -->
+
+
+                            <!-- <div class="blog-inner-img">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="image">
+                                            <img src="assets/images/blog/blog-2.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="image">
+                                            <img src="assets/images/blog/blog-3.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+                            <!-- Blog Inner Img End -->
+                            <!-- Blog Details Text Start -->
+
+                            <!-- <div class="blog-details-text">
+                                <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of incredible freelance talent for all your software development needs. specializes in technological and IT-related services such as product engineering, warranty management, building cloud, infrastructure, network, etc. </p>
+                            </div> -->
+                            <p>{{ single_project.description }}</p>
+                            
+                            <!-- Blog Details Text End -->
+                            <!-- Blog Details Tag Share Start -->
+                            <div class="blog-details-tag-share">
+                                <div class="blog-details-tag">
+                                    {% if single_project.tags.all %}
+                                    <div class="sidebar-widget">
+                                        <span class="label">Tags :</span>
+                                        <ul class="sidebar-tag">
+                                            {% for tag in single_project.tags.all %}
+                                            <li><a href="{% url 'tag_search' tag.id %}">{{ tag.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="blog-details-share">
+                                    <ul class="social-share">
+                                        {% post_to_facebook object_or_url "Post to Facebook!" %}
+                                        <!-- <li><a class="share-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a class="share-pinterest" href="#"><i class="fab fa-pinterest-p"></i></a></li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Blog Details Tag Share End -->
+                            <!-- Blog Details Post Navigation Start -->
+                            <div class="techmax-post-pagination">
+                                {% for project in recent_projects|slice:":2" %}
+                                {% if forloop.counter|divisibleby:2 %}
+
+                                <div class="next-post">
+                                    <div class="blog-pagination-post">
+                                        <div class="post-content text-end">
+                                            <h4 class="title"><a href="{% url 'project-details' project.slug %}">{{ project.title }}</a></h4>
+                                            <span class="date"><i class="far fa-calendar-alt"></i>{{ project.create_date|date:"M d Y" }}</span>
+                                        </div>
+                                        <div class="post-thumb">
+                                            <a href="{% url 'project-details' project.slug %}">
+                                                <img src="{{ project.image.url }}" alt="">
+                                                <i class="flaticon-next"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% else %}
+                                <div class="previous-post">
+                                    <div class="blog-pagination-post">
+                                        <div class="post-thumb">
+                                            <a href="{% url 'project-details' project.slug %}">
+                                                <i class="flaticon-back"></i>
+                                                <img src="{{ project.image.url }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <h4 class="title"><a href="{% url 'project-details' project.slug %}">{{ project.title }}</a></h4>
+                                            <span class="date"><i class="far fa-calendar-alt"></i>{{ project.create_date|date:"M d Y" }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <!-- Blog Details Post Navigation End -->
+                            <!-- Commtent Wrap Start -->
+                            <!-- <div class="comment-wrap">
+                                <div class="comment-box">
+                                    <h3 class="comment-title">Comments (03)</h3>
+                                    <ul class="comment-items">
+                                        <li>
+                                            <div class="single-comment">
+                                                <div class="comment-author">
+                                                    <img src="assets/images/blog/author-1.jpg" alt="">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <h4 class="name">Michel Holder</h4>
+                                                    <p>We're known for one thing every where we go excellent customer experiences purpose. consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
+                                                    <div class="meta">
+                                                        <span class="date">Nov 20, 2020 at 1:47 am</span>
+                                                        <a class="reply" href="#"><i class="fa fa-reply-all"></i> Reply</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="single-comment">
+                                                <div class="comment-author">
+                                                    <img src="assets/images/blog/author-2.jpg" alt="">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <h4 class="name">Michel Holder</h4>
+                                                    <p>We're known for one thing every where we go excellent customer experiences purpose. consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
+                                                    <div class="meta">
+                                                        <span class="date">Nov 20, 2020 at 1:47 am</span>
+                                                        <a class="reply" href="#"><i class="fa fa-reply-all"></i> Reply</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ul class="comment-reply">
+                                                <li>
+                                                    <div class="single-comment">
+                                                        <div class="comment-author">
+                                                            <img src="assets/images/blog/p-post-1.jpg" alt="">
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <h4 class="name">Michel Holder</h4>
+                                                            <p>We're known for one thing every where we go excellent customer experiences purpose. consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
+                                                            <div class="meta">
+                                                                <span class="date">Nov 20, 2020 at 1:47 am</span>
+                                                                <a class="reply" href="#"><i class="fa fa-reply-all"></i> Reply</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="comment-form">
+                                    <h3 class="comment-title">Leave A Comment</h3>
+                                    <p>Your email address will not be published. Required fields are marked *</p>
+                                    <div class="comment-form-wrap">
+                                        <form action="#">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="single-form">
+                                                        <input class="form-control" type="text" placeholder="Your Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-form">
+                                                        <input class="form-control" type="email" placeholder="Your Email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="single-form">
+                                                        <textarea class="form-control" placeholder="Your Message"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-btn">
+                                                        <button class="btn" type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- Commtent Wrap End -->
+                        </div>
+                    </div>
+                    <!-- Blog Details Post End -->
+                </div>
+                <div class="col-lg-4">
+                    <!-- Blog Sidebar Start -->
+                    <div class="blog-sidebar">
+                        <!-- Sidebar Widget Start -->
+                        <div class="sidebar-widget sidebar-widget-1">
+                            <!-- Widget Search Form Start -->
+                            <form class="search-form" action="{% url 'search_project_data'  %}" method='GET'>
+                                <input type="text" name="keyword" placeholder="Write your keyword...">
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                            <!-- Widget Search Form End -->
+                        </div>
+                        <!-- Sidebar Widget End -->
+
+                        <!-- Sidebar Widget Start -->
+                        <div class="sidebar-widget">
+                            <!-- Widget Title Start -->
+                            <div class="widget-title">
+                                <h3 class="title">Recent Projects</h3>
+                            </div>
+                            <!-- Widget Title End -->
+                            <!-- Widget Recent Post Start -->
+                            <div class="recent-posts">
+                                <ul>
+                                    {% for project in recent_projects %}
+                                    <li>
+                                        <a class="post-link" href="{% url 'project-details' project.slug %}">
+                                            <div class="post-thumb">
+                                                <img src="{{ project.image.url }}" alt="">
+                                            </div>
+                                            <div class="post-text">
+                                                <h4 class="title">{{ project.title }}</h4>
+                                                <span class="post-meta"><i class="far fa-calendar-alt"></i>{{ project.create_date|date:"M d Y" }}</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                    
+                                </ul>
+                            </div>
+                            <!-- Widget Recent Post End -->
+                        </div>
+                        <!-- Sidebar Widget End -->
+
+                        <!-- Sidebar Widget Start -->
+                        <div class="sidebar-widget">
+                            <!-- Widget Title Start -->
+                            <div class="widget-title">
+                                <h3 class="title">Categories</h3>
+                            </div>
+                            <!-- Widget Title End -->
+                            <!-- Widget Category Start -->
+                            <ul class="category">
+                                {% for category in project_categories %}
+                                <li class="cate-item"><a href="{% url 'projects_search_by_category' category.id %}"><i class="flaticon-next"></i> {{ category.name }} <span class="post-count">{{ category.num_projects }}</span></a></li>
+                                {% endfor %}
+                                </ul>
+                            <!-- Widget Category End -->
+                        </div>
+                        <!-- Sidebar Widget End -->
+
+                        <!-- Sidebar Widget Start -->
+                        <div class="sidebar-widget">
+                            <!-- Widget Title Start -->
+                            <div class="widget-title">
+                                <h3 class="title">Tags</h3>
+                            </div>
+                            <!-- Widget Title End -->
+                            <!-- Widget Category Start -->
+                            <ul class="sidebar-tag">
+                                {% for tag in project_tags %}
+                                <li><a href="{% url 'project_search_by_tag' tag.id %}">{{ tag.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            <!-- Widget Category End -->
+                        </div>
+                        <!-- Sidebar Widget End -->
+                    </div>
+                    <!-- Blog Sidebar End -->
+                </div>
+            </div>
+        </div>
+        <!-- Blog Details Wrap End -->
+    </div>
+</div>
+<!-- Blog Details End -->
+
+
+<!-- Cta Start -->
+<!-- <div class="section cta-section">
+    <div class="container">
+        <div class="cta-wrap" style="background-image: url(assets/images/bg/cta-bg.jpg);">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="cta-left">
+                        <h2 class="title">Let's make something beautiful together</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="cta-right">
+                        <span class="number">{{ company.phone }}</span>
+                        <a class="btn" href="{% url 'projects' %}">See More Projects</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- Cta End -->
+{% endblock %}

@@ -1,0 +1,601 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!-- Hero Start -->
+            {% if home_banner.choose_blog %}
+            <div class="section tech-hero-section" style="background-image: url({{ home_banner.choose_blog.image.url }});">
+            {% endif %}
+            {% if home_banner.choose_project %}
+            <div class="section tech-hero-section" style="background-image: url({{ home_banner.choose_project.image.url }});">
+
+            {% endif %}
+            <div class="shape-1"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <!-- Hero Content Start -->
+                        <div class="hero-content">
+                            <h3 class="sub-title" data-aos-delay="600" data-aos="fade-up">{{ home_banner.title }}</h3>
+                            {% if home_banner.choose_blog %}
+                            <h2 class="title" data-aos="fade-up" data-aos-delay="700">{{ home_banner.choose_blog.title }}</h2>
+                            <p data-aos="fade-up" data-aos-delay="800">{{ home_banner.choose_blog.description|truncatewords:15 }}</p>
+                            <div class="hero-btn" data-aos="fade-up" data-aos-delay="900">
+                                <a class="btn" href="{% url 'blog-details' home_banner.choose_blog.slug %}">Read More</a>
+                            </div>
+                            {% endif %}
+                            {% if home_banner.choose_project %}
+                            <h2 class="title" data-aos="fade-up" data-aos-delay="700">{{ home_banner.choose_project.title }}</h2>
+                            <p data-aos="fade-up" data-aos-delay="800">{{ home_banner.choose_project.description|truncatewords:15 }}</p>
+                            
+                            <div class="hero-btn" data-aos="fade-up" data-aos-delay="900">
+                                <a class="btn" href="{% url 'project-details' home_banner.choose_project.slug %}">Read More</a>
+                            </div>
+                            {% endif %}
+                            
+                        </div>
+                        <!-- Hero Content End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+        <!-- Service Start -->
+        <div class="section service-section">
+            <div class="container">
+                <div class="service-wrap">
+                    <div class="row">
+                        {% for step in workflow %}
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Service Item Start -->
+                            <div class="service-item text-center">
+                                <div class="shape-1"></div>
+                                <div class="shape-2">
+                                    <img src="{% static 'assets/images/service/s-shape-2.png' %}" alt="">
+                                </div>
+                                <div class="service-icon">
+                                    {% if step.image %}
+                                    <img src="{{ step.image.url }}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/service/service-4.png' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="service-content">
+                                    <h3 class="title"><a href="#">{{ step.title }}</a></h3>
+                                    <p>{{ step.description }}</p>
+                                </div>
+                            </div>
+                            <!-- Service Item End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+
+        <!-- About Start -->
+        <div class="section about-section section-padding">
+            <div class="container">
+                <!-- About Wrap Start -->
+                <div class="about-wrap">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- About Thumb Wrap Start -->
+                            <div class="about-thumb-wrap">
+                                <div class="about-thumb-small">
+                                    {% if about.primary_image %}
+                                    <img src="{{ about.primary_image.url }}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/about-1.jpg' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="about-thumb-big">
+                                    {% if about.primary_image %}
+                                    <img src="{{ about.secondary_image.url }}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/about-2.jpg' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="about-thumb-shape">
+                                    <img src="{% static 'assets/images/ab-shape.png' %}" alt="">
+                                </div>
+                                <div class="play-btn">
+                                    <a class="popup-video" href="{{ about.video.url }}"><i class="fas fa-play"></i></a>
+                                </div>
+                            </div>
+                            <!-- About Thumb Wrap End -->
+                        </div>
+                        <div class="col-lg-6">
+                            <!-- About Content Start -->
+                            <div class="about-content">
+                                <div class="section-title">
+                                    <h3 class="sub-title">{{ about.title }}</h3>
+                                    <h2 class="title">{{ about.sub_title }}</h2>
+                                </div>
+                                <p>{{ about.description }}</p>
+                                <div class="about-author-list">
+                                    <!-- <div class="about-author">
+                                        <img src="{% static 'assets/images/sign.png' %}" alt="">
+                                        <h4 class="name">Mita Walker</h4>
+                                        <span class="designation">CEO, Techmax</span>
+                                        <div class="author-img">
+                                            <img src="{% static 'assets/images/author-1.jpg' %}" alt="">
+                                        </div>
+                                    </div> -->
+                                    <div class="about-list">
+                                        <ul>
+                                            {% for special in about.speciality.all %}
+                                            <li><i class="fas fa-check"></i> <a href="#">{{ special.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- About Content End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- About Wrap End -->
+            </div>
+        </div>
+        <!-- About End -->
+
+        <!--  Skill Start -->
+        <div class="section skill-section section-padding">
+            <div class="container">
+                <div class="skill-wrap">
+                    <!--  Skill Content Wrap Start -->
+                    <div class="skill-content-wrap">
+                        <div class="row align-items-center">
+                            <div class="col-lg-5">
+                                <!--  Skill Content Left Start -->
+                                <div class="skill-content-left">
+                                    <div class="experience">
+                                        <h2 class="number">{{ experiences.experince_year }}+</h2>
+                                        <span>Years of experience</span>
+                                    </div>
+                                    <h3 class="title">{{ experiences.title }}</h3>
+                                </div>
+                                <!--  Skill Content Left End -->
+                            </div>
+                            <div class="col-lg-7">
+                                <!--  Skill Content Right Start -->
+                                <div class="skill-content-right">
+                                    <h3 class="title">{{ experiences.quotes }}</h3>
+                                    <!-- <div class="skill-bar-wrap">
+                                        <div class="skill-item">
+                                            <div class="skill-header">
+                                                <h5 class="skill-title">IT Managment</h5>
+                                                <span class="skill-percentage">
+                                                <span class="counter">80</span>
+                                                %
+                                                </span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="bar-inner">
+                                                    <div class="progress-line" data-width="80"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item">
+                                            <div class="skill-header">
+                                                <h5 class="skill-title">Data Security</h5>
+                                                <span class="skill-percentage">
+                                                <span class="counter">90</span>
+                                                %
+                                                </span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="bar-inner">
+                                                    <div class="progress-line" data-width="90"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item">
+                                            <div class="skill-header">
+                                                <h5 class="skill-title">Solution</h5>
+                                                <span class="skill-percentage">
+                                                <span class="counter">90</span>
+                                                %
+                                                </span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="bar-inner">
+                                                    <div class="progress-line" data-width="90"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <!--  Skill Content Right End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!--  Skill Content Wrap End -->
+
+                    <!--  Skill Image Wrap Start -->
+                    <div class="skill-img-wrap">
+                        <div class="row">
+                            {% for service in services %}
+                            <div class="col-lg-3 col-sm-6">
+                                <!--  Skill Image Item Start -->
+                                <div class="skill-img-item">
+                                    <div class="skill-img">
+                                        <a class="image"><img src="{{ service.bg_image.url }}" alt=""></a>
+                                        <div class="skill-img-text">
+                                            <h3 class="title"><a href="#">{{ service.title }}</a></h3>
+                                            <!-- <a class="skill-btn" href="#">Learn More <i class="fas fa-long-arrow-alt-right"></i></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  Skill Image Item Start -->
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!--  Skill Image Wrap End -->
+                </div>
+            </div>
+        </div>
+        <!--  Skill End -->
+
+        <!-- Counter Start -->
+        <div class="section counter-section" style="background-image: url({% static 'assets/images/bg/counter-bg.jpg' });">
+            <div class="container">
+                <div class="counter-wrap">
+                    <div class="row">
+                        {% for statistics in project_statistics %}
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Counter Item Start -->
+                            <div class="counter-item text-center">
+                                <div class="counter-icon">
+                                    <img src="{{ statistics.icon.url }}" alt="">
+                                </div>
+                                <div class="counter-text">
+                                    <span>
+                                    <span class="counter">{{ statistics.num_project }}</span>+
+                                    <p>{{ statistics.title }}</p>
+                                </div>
+                            </div>
+                            <!-- Counter Item End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Counter End -->
+
+        <!-- Case Study Start -->
+        <div class="section case-study-section section-padding">
+            <div class="container">
+                <div class="case-study-wrap">
+                    <div class="section-title text-center">
+                        <h3 class="sub-title">{{ project_heading.title }}</h3>
+                        <h2 class="title">{{ project_heading.sub_title }}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study Slider Wrap Start -->
+            <div class="case-study-slider-wrap">
+                <div class="swiper-container case-study-active">
+                    <div class="swiper-wrapper">
+                        {% for project in project_list %}
+                        <div class="swiper-slide">
+                            <!-- Single Case Study Start -->
+                            <div class="single-case-study text-center" style="background-image: url({{ project.image.url}});">
+
+                                <div class="case-study-content">
+                                    <div class="case-study-title">
+                                        <h3 class="title">{{ project.title|truncatewords:3 }}</h3>
+                                        <span>{{ project.category }}</span>
+                                    </div>
+                                    <div class="case-study-text">
+                                        <p>{{ project.description|truncatewords:25 }}</p>
+                                    </div>
+                                    <div class="case-study-link">
+                                        <a href="{% url 'project-details' project.slug %}"><i class="fas fa-long-arrow-alt-right"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Single Case Study End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Add Pagination -->
+                    <div class="case-study-arrow swiper-button-next"></div>
+                    <div class="case-study-arrow swiper-button-prev"></div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <!-- Case Study Slider Wrap End -->
+
+            <!-- Case Study Button Start -->
+            <div class="row jusify-content-center">
+                <div class="case-study-btn text-center">
+                    <a class="btn" href="{% url 'projects' %}">See More Projects</a>
+                </div>
+            </div>
+            <!-- Case Study Button End -->
+
+        </div>
+        <!-- Case Study End -->
+
+        <!-- Features Start -->
+        <div class="section features-section" style="background-image: url({% static 'assets/images/bg/features-bg.jpg' %});">
+            <!-- Features Thumb Start -->
+            <div class="features-thumb d-flex align-items-end">
+                <div class="shape-1">
+                    <img src="{{ why_choose_us.bg_image.url }}" alt="">
+                </div>
+                <div class="image">
+                    <img src="{{ why_choose_us.image.url }}" alt="">
+                </div>
+            </div>
+            <!-- Features Thumb End -->
+            <div class="container">
+                <!-- Features Wrap Start -->
+                <div class="features-wrap">
+                    <div class="row">
+                        <div class="col-xl-7 offset-xl-5">
+                            <!-- Features Content Wrap Start -->
+                            <div class="features-content-wrap">
+                                <div class="section-title">
+                                    <h3 class="sub-title">{{ why_choose_us.title }}</h3>
+                                    <h2 class="title">{{ why_choose_us.sub_title }}</h2>
+                                </div>
+                                <!-- Features Content Start -->
+                                <div class="features-content">
+                                    <ul>
+                                        <!-- Features Item Start -->
+                                        {% for feature in features %}
+                                        <li class="features-item">
+                                            <div class="features-icon">
+                                                <img src="{{ feature.icon.url }}" alt="">
+                                            </div>
+                                            <div class="features-text">
+                                                <h3 class="title">{{ feature.title }}</h3>
+                                                <p>{{ feature.description }}</p>
+                                            </div>
+                                        </li>
+                                        <!-- Features Item End -->
+                                        {% endfor %}
+                                    </ul>
+                                    <!-- <div class="features-link">
+                                        <p>This is only glimpse see <a href="#">All Features</a></p>
+                                    </div> -->
+                                </div>
+                                <!-- Features Content End -->
+                            </div>
+                            <!-- Features Content Wrap End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Features Wrap End -->
+            </div>
+        </div>
+        <!-- Features End -->
+
+        <!-- Team Start -->
+        <div class="section team-section section-padding">
+            <div class="container">
+                <!-- Team Wrap Start -->
+                <div class="team-wrap">
+                    <div class="section-title text-center">
+                        <h3 class="sub-title">{{ team_heading.section_name }} </h3>
+                        <h2 class="title"> {{ team_heading.title }}</h2>
+                    </div>
+                    <!-- Team Content Wrap Start -->
+                    <div class="team-content-wrap">
+                        <div class="swiper-container team-active">
+                            <div class="swiper-wrapper">
+                                {% for team in team_member %}
+                                <div class="swiper-slide">
+                                    <!-- Single Team Start -->
+                                    <div class="single-team">
+                                        <div class="team-img">
+                                            <a href="team.html"><img src="{{ team.image.url }}" alt=""></a>
+                                        </div>
+                                        <div class="team-content">
+                                            <div class="team-social">
+                                                <ul class="social">
+                                                    {% if team.facebook %}
+                                                    <li><a href="{{ team.facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                                                    {% endif %}
+                                                    {% if team.twitter %}
+                                                    <li><a href="{{ team.twitter }}"><i class="fab fa-twitter"></i></a></li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                            <h3 class="name"><a href="#">{{ team.name }}</a></h3>
+                                            <span class="designation">{{ team.designation }} {% if team.company %} , {{ team.company }} {% endif %}</span>
+                                        </div>
+                                    </div>
+                                    <!-- Single Team End -->
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <!-- Team Content Wrap End -->
+                </div>
+                <!-- Team Wrap End -->
+            </div>
+        </div>
+        <!-- Team End -->
+
+        <!-- Testimonial Start -->
+        <div class="section testimonial-section section-padding" style="background-image: url({% static 'assets/images/bg/testi-bg.jpg' %});">
+            <div class="container">
+                <!-- Testimonial Wrap Start -->
+                <div class="testimonial-wrap">
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="section-title">
+                                <h3 class="sub-title">{{ testimonial_heading.title }}</h3>
+                                <h2 class="title">{{ testimonial_heading.sub_title }} </h2>
+                            </div>
+                        </div>
+                        <div class="col-xl-8">
+                            <!-- Testimonial Slider Wrap Start -->
+                            <div class="testimonial-slider-wrap">
+                                <div class="swiper-container testimonial-active">
+                                    <div class="swiper-wrapper">
+                                        {% for testi in testimonial %}
+                                        <div class="swiper-slide">
+                                            <!-- Single Testimonial Start -->
+                                            <div class="single-testimonial">
+                                                <div class="testimonial-content">
+                                                    <h3 class="title">{{ testi.title }}</h3>
+                                                    <p>{{ testi.description }}</p>
+                                                    <div class="testimonial-author-wrap">
+                                                        <div class="testimonial-author">
+                                                            <div class="author-img">
+                                                                {% if testi.client.image %}
+                                                                <img src="{{ testi.client.image.url }}" alt="" height="56px" width="56px">
+                                                                {% else %}
+                                                                <img src="{% static 'assets/images/author-1.jpg' %}" alt="">
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="author-text">
+                                                                <h5 class="name">{{ testi.client.name }}</h5>
+                                                                <span class="designation">{{ testi.client.designation }}, {{ testi.client.company_name }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="testimonial-quote">
+                                                            <img src="{% static 'assets/images/quote.png' %}" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Single Testimonial End -->
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <!-- Add Pagination -->
+                                    <div class="testimonial-arrow swiper-button-next"></div>
+                                    <div class="testimonial-arrow swiper-button-prev"></div>
+                                </div>
+                            </div>
+                            <!-- Testimonial Slider Wrap End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial Wrap End -->
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+        <!-- Blog Start -->
+        <div class="section blog-section section-padding-02">
+            <div class="container">
+                <!-- Blog Wrap Start -->
+                <div class="blog-wrap">
+                    <div class="section-title text-center">
+                        <h3 class="sub-title">{{ blog_heading.title }}</h3>
+                        <h2 class="title">{{ blog_heading.sub_title }}</h2>
+                    </div>
+                    <!-- Blog Content Wrap Start -->
+                    <div class="blog-content-wrap">
+                        <div class="row">
+                            {% for blog in last_3_blog %}
+                            <div class="col-lg-4 col-md-6">
+                                <!-- Single Blog Start -->
+                                <div class="single-blog">
+                                    <div class="blog-img">
+                                        <a href="{% url 'blog-details' blog.slug %}"><img src="{{ blog.image.url }}" alt=""></a>
+                                        <div class="top-meta">
+                                            <span class="date"><span>{{ blog.create_date|date:"d" }}</span>{{ blog.create_date|date:"M" }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <div class="blog-meta">
+                                            <span><i class="fas fa-user"></i> <a href="#">{{ blog.author.get_fullname }}</a></span>
+                                            <!-- <span><i class="far fa-comments"></i> 0 Comments</span> -->
+                                        </div>
+                                        <h3 class="title"><a href="blog-details.html">{{ blog.title|truncatewords:7 }}</a></h3>
+                                        <p>{{ blog.description|truncatewords:12 }}</p>
+                                    </div>
+                                    <div class="blog-btn">
+                                        <a class="blog-btn-link" href="{% url 'blog-details' blog.slug %}">Read Full Article <i class="fas fa-long-arrow-alt-right"></i></a>
+                                    </div>
+                                </div>
+                                <!-- Single Blog End -->
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Blog Content Wrap End -->
+                </div>
+                <!-- Blog Wrap End -->
+            </div>
+        </div>
+        <!-- Blog End -->
+
+        <!-- Brand Logo Start -->
+        <div class="section Brand-section">
+            <div class="container">
+                <!-- Brand Wrapper Start -->
+                <div class="brand-wrapper section-padding text-center">
+                    <div class="section-title text-center">
+                        <h3 class="sub-title">{{ brandheading.title }}</h3>
+                        <h2 class="title">{{ brandheading.sub_title }}</h2>
+                    </div>
+                    <!-- Brand Active Start -->
+                    <div class="brand-active">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <!-- Single Brand Start -->
+                                {% for logo in client %}
+                                <div class="swiper-slide single-brand">
+                                    {% if logo.company_logo %}
+                                    <img src="{{ logo.company_logo.url }}" alt="Brand">
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                                <!-- Single Brand End -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Brand Active End -->
+                </div>
+                <!-- Brand Wrapper End -->
+            </div>
+        </div>
+        <!-- Brand Logo End -->
+
+        <!-- Cta Start -->
+        <!-- <div class="section cta-section">
+            <div class="container">
+                <div class="cta-wrap" style="background-image: url({% static 'assets/images/bg/cta-bg.jpg' %});">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="cta-left">
+                                <h2 class="title">Let's make something beautiful together</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="cta-right">
+                                <span class="number">{{ company.phone }}</span>
+                                <a class="btn" href="{% url 'projects' %}">See More Projects</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Cta End -->
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load mytemplatetags %}
+
+{% block content %}
+
+
+        <!-- Page Banner Start -->
+        <div class="section page-banner-section" style="background-image: url({% static 'assets/images/page-banner.jpg' %});">
+            <div class="shape-2"></div>
+            <div class="container">
+                <div class="page-banner-wrap">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Page Banner Content Start -->
+                            <div class="page-banner text-center">
+                                <h2 class="title">Blog Grid</h2>
+                                <ul class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Blog Grid</li>
+                                </ul>
+                            </div>
+                            <!-- Page Banner Content End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner End -->
+
+        <!-- Blog Start -->
+        <div class="section blog-section section-padding">
+            <div class="container">
+                <!-- Blog Grid Wrap Start -->
+                <div class="blog-grid-wrap">
+                    <div class="row">
+                        <div class="col-sm-2 col-md-2"></div>
+            <div class="col-sm-8 col-md-8">
+                {% if messages %}
+                <div class="messages">
+                {% for message in messages %}
+                    <div class="alert{% if message.tags %} {{ message.tags }} {% endif %}" role="alert">{{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+                </div>
+                {% endif %}
+                </div>
+            <div class="col-sm-2 col-md-2 mb-3"></div>
+
+                        {% for blog in blogs %}
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Blog Start -->
+                            <div class="single-blog">
+                                <div class="blog-img">
+                                    <a href="{% url 'blog-details' blog.slug %}"><img src="{{ blog.image.url }}" alt=""></a>
+                                    <div class="top-meta">
+                                        <span class="date"><span>{{ blog.create_date|date:"d" }}</span>{{ blog.create_date|date:"M" }}</span>
+                                    </div>
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-meta">
+                                        <span><i class="fas fa-user"></i> <a href="#">{{ blog.author.get_fullname }}</a></span>
+                                        <!-- <span><i class="far fa-comments"></i> 0 Comments</span> -->
+                                    </div>
+                                    <h3 class="title"><a href="{% url 'blog-details' blog.slug %}">{{ blog.title|truncatewords:7 }}</a></h3>
+                                    <p>{{ blog.description|truncatewords:12 }}</p>
+                                </div>
+                                <div class="blog-btn">
+                                    <a class="blog-btn-link" href="{% url 'blog-details' blog.slug %}">Read Full Article <i class="fas fa-long-arrow-alt-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- Single Blog End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Techmax Pagination Start -->
+                    <div class="techmax-pagination">
+                            {% if blogs.has_other_pages %}
+                            <ul class="pagination justify-content-center">
+                              {% if blogs.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ blogs.previous_page_number }}"><i class="flaticon-back"></i></a></li>
+                              {% else %}
+                                <li class="page-item disabled"><a class="page-link"><i class="flaticon-back"></i></a></li>
+                              {% endif %}
+                              {% for i in blogs.paginator.page_range %}
+                                {% if blogs.number == i %}
+                                  <li class="page-item active"><a class="page-link"><span>{{ i }}</span></a></li>
+                                {% else %}
+                                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                              {% endfor %}
+                              {% if blogs.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ blogs.next_page_number }}"><i class="flaticon-next"></i></a></li>
+                                
+                              {% else %}
+                                <li class="disabled page-item"><a class="page-link"><i class="flaticon-next"></i></a></li>
+                              {% endif %}
+                            </ul>
+                          {% endif %}
+                    </div>
+                    <!-- Techmax Pagination End -->
+                </div>
+                <!-- Blog Grid Wrap End -->
+            </div>
+        </div>
+        <!-- Blog End -->
+
+        <!-- Cta Start -->
+        <!-- <div class="section cta-section">
+            <div class="container">
+                <div class="cta-wrap" style="background-image: url({% static 'assets/images/bg/cta-bg.jpg' %});">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="cta-left">
+                                <h2 class="title">Let's make something beautiful together</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="cta-right">
+                                <span class="number">{{ company.phone }}</span>
+                                <a class="btn" href="{% url 'services' %}">See More Services</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Cta End -->
+{% endblock %}

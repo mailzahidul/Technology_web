@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!-- Page Banner Start -->
+<div class="section page-banner-section" style="background-image: url({% static 'assets/images/page-banner.jpg' %});">
+    <div class="shape-2"></div>
+    <div class="container">
+        <div class="page-banner-wrap">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Page Banner Content Start -->
+                    <div class="page-banner text-center">
+                        <h2 class="title">IT Services</h2>
+                        <ul class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">IT Services</li>
+                        </ul>
+                    </div>
+                    <!-- Page Banner Content End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Banner End -->
+
+<!-- Features Start -->
+<div class="section features-section-3 features-section-4 section-padding">
+    <div class="container">
+        <!-- Features Wrap Start -->
+        <div class="features-wrap-3">
+            <div class="section-title2 text-center">
+                <h2 class="title">{{ service_section.title }}</h2>
+            </div>
+            <div class="features-content-wrap">
+                <div class="row">
+                    {% for service in service_list %}
+                    <div class="col-lg-4 col-sm-6">
+                        <!-- Single Item Start -->
+                        <div class="single-item">
+                            <div class="features-icon">
+                                <img src="{{ service.icon.url }}" alt="">
+                            </div>
+                            <div class="features-content">
+                                <h3 class="title">{{ service.title }}</h3>
+                                <p>{{ service.description }}</p>
+                            </div>
+                        </div>
+                        <!-- Single Item End -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Features Wrap End -->
+    </div>
+</div>
+<!-- Features End -->
+
+<!--  Skill Start -->
+<div class="section skill-section skill-section-3 skill-section-4 section-padding">
+    <div class="container">
+        <div class="skill-wrap">
+            <!--  Skill Content Wrap Start -->
+            <div class="skill-content-wrap">
+                <div class="row align-items-center">
+                    <div class="col-xl-5 col-lg-6">
+                        <!--  Skill Content Left Start -->
+                        <div class="skill-content-left">
+                            <div class="skill-img">
+                                <img src="{{ about.primary_image.url }}" alt="">
+                                <div class="play-btn">
+                                    <a class="popup-video" href="{{ about.video }}"><i class="fas fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  Skill Content Left End -->
+                    </div>
+                    <div class="col-xl-7 col-lg-6">
+                        <!--  Skill Content Right Start -->
+                        <div class="skill-content-right">
+                            <div class="section-title2">
+                                <h2 class="title">{{ about.sub_title }}</h2>
+                            </div>
+                            <!-- <div class="skill-bar-wrap">
+                                        <div class="skill-item">
+                                            <div class="skill-header">
+                                                <h5 class="skill-title">Performance</h5>
+                                                <span class="skill-percentage">
+                                                <span class="counter">80</span>
+                                                %
+                                                </span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="bar-inner">
+                                                    <div class="progress-line" data-width="80"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item">
+                                            <div class="skill-header">
+                                                <h5 class="skill-title">Customer Satisfaction</h5>
+                                                <span class="skill-percentage">
+                                                <span class="counter">90</span>
+                                                %
+                                                </span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="bar-inner">
+                                                    <div class="progress-line" data-width="90"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item">
+                                            <div class="skill-header">
+                                                <h5 class="skill-title">Business growth rate</h5>
+                                                <span class="skill-percentage">
+                                                <span class="counter">90</span>
+                                                %
+                                                </span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="bar-inner">
+                                                    <div class="progress-line" data-width="90"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                        </div>
+                        <!--  Skill Content Right End -->
+                    </div>
+                </div>
+            </div>
+            <!--  Skill Content Wrap End -->
+        </div>
+    </div>
+</div>
+<!--  Skill End -->
+<!-- Cta Start -->
+<div class="section cta-section-3 section-padding-03"
+    style="background-image: url({% static 'assets/images/bg/counter-bg.jpg' %});">
+    <div class="container">
+        <!-- Cta Wrap Start -->
+        <div class="cta-wrap-3">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="cta-content text-center">
+                        <h2 class="title">{{ project_quotes.title }}</h2>
+                        <div class="cta-a">
+                            <p>{{ project_quotes.description }} <a class="btn" href="{% url 'contact_us' %}">Contact US</a></p>
+                        </div>
+
+                        <!-- <div class="col-lg-6">
+                                    <div class="cta-right">
+                                        <span class="number">{{ company.phone }}</span>
+                                        <a  href="{% url 'projects' %}">See More Projects</a>
+                                    </div>
+                                </div> -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cta Wrap End -->
+    </div>
+</div>
+<!-- Cta End -->
+
+<!-- Pricing Start -->
+<div class="section pricing-section pricing-section-2 section-padding-02">
+    <div class="container">
+        <!-- Pricing Wrap Start -->
+        <div class="pricing-wrap">
+            <div class="section-title2 text-center">
+                <h2 class="title">{{ s_price_heading.title }}</h2>
+                <p>{{ s_price_heading.description }}</p>
+            </div>
+            <!-- Pricing Content Wrap Start -->
+            <div class="pricing-content-wrap">
+                <div class="row">
+                    {% for item in service_prices %}
+                    <div class="col-xl-4 col-md-6">
+                        <!-- Single Pricing Start -->
+                        <div class="single-pricing {% if item.price_category.is_recomended %}active{% endif %}">
+                            <div class="pricing-badge">
+                                <span class="title">{{ item.price_category.name }}</span>
+                                {% if item.price_category.is_recomended %}
+                                <span class="recommend">Recommend</span>
+                                {% endif %}
+                            </div>
+                            <div class="pricing-price">
+                                <span class="price">{{ item.price }}</span>
+                                <span class="currency">$</span>
+                                <p>{{ item.price_category.description }}</p>
+                            </div>
+                            <div class="pricing-content">
+                                <ul class="pricing-list">
+                                    {% for feature in item.features.all %}
+                                    <li><i class="fas fa-check"></i> {{ feature.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="pricing-btn">
+                                    <a class="btn" href="#">Get Started</a>
+                                    <a class="pricing-contact" href="{% url 'contact_us' %}">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Pricing End -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Pricing Content Wrap End -->
+        </div>
+        <!-- Pricing Wrap End -->
+    </div>
+</div>
+<!-- Pricing End -->
+
+<!-- Testimonial Start -->
+<div class="section testimonial-section-2 testimonial-section-5 section-padding-02">
+    <div class="container">
+        <div class="testimonial-2-wrap">
+            <div class="section-title2 text-center">
+                <h2 class="title">{{ testimonial_heading.heading }}</h2>
+            </div>
+            <div class="testimonial-slider-wrap">
+                <div class="swiper-container testimonial-2-active slider-bullet">
+                    <div class="swiper-wrapper">
+                        {% for testi in testimonial %}
+                        <div class="swiper-slide">
+                            <!-- Single Testimonial Start -->
+                            <div class="single-testimonial">
+                                <div class="testimonial-image">
+                                    {% if testi.client.image %}
+                                    <img src="{{ testi.client.image.url }}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/author-1.jpg' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="testimonial-content">
+                                    <p>{{ testi.description }}</p>
+                                    <span class="name">{{ testi.client.name }}</span>
+                                    <span class="designation">{{ testi.client.designation }}, {{
+                                        testi.client.company_name }}</span>
+                                </div>
+                            </div>
+                            <!-- Single Testimonial End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+
+<!-- Cta Start -->
+<!-- <div class="section cta-section">
+            <div class="container">
+                <div class="cta-wrap" style="background-image: url({% static 'assets/images/bg/cta-bg.jpg' %});">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="cta-left">
+                                <h2 class="title">Let's make something beautiful together</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="cta-right">
+                                <span class="number">{{ company.phone }}</span>
+                                <a class="btn" href="{% url 'projects' %}">See More Projects</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+<!-- Cta End -->
+
+
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+        <!-- Page Banner Start -->
+        <div class="section page-banner-section" style="background-image: url({% static 'assets/images/page-banner.jpg' %});">
+            <div class="shape-2"></div>
+            <div class="container">
+                <div class="page-banner-wrap">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Page Banner Content Start -->
+                            <div class="page-banner text-center">
+                                <h2 class="title">Contact Us</h2>
+                                <ul class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                                </ul>
+                            </div>
+                            <!-- Page Banner Content End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner End -->
+
+
+
+        <!-- Contact Info Start -->
+        <div class="section contact-info-section section-padding-02">
+            <div class="container">
+                <!-- Contact Info Wrap Start -->
+                <div class="contact-info-wrap">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6">
+                            <!--Single Contact Info Start -->
+                            <div class="single-contact-info text-center">
+                                <div class="info-icon">
+                                    <i class="flaticon-phone-call"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h5 class="title">Telephone</h5>
+                                    <p>{{ company.phone }}</p>
+                                </div>
+                            </div>
+                            <!--Single Contact Info End -->
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <!--Single Contact Info Start -->
+                            <div class="single-contact-info text-center">
+                                <div class="info-icon">
+                                    <i class="flaticon-email"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h5 class="title">Mail Address</h5>
+                                    <p>{{ company.email }}</p>
+                                </div>
+                            </div>
+                            <!--Single Contact Info End -->
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <!--Single Contact Info Start -->
+                            <div class="single-contact-info text-center">
+                                <div class="info-icon">
+                                    <i class="flaticon-pin"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h5 class="title">Location</h5>
+                                    <p>{{ company.address }}</p>
+                                </div>
+                            </div>
+                            <!--Single Contact Info End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Info Wrap End -->
+            </div>
+        </div>
+        <!-- Contact Info End -->
+
+        <!-- Contact Form Start -->
+        <div class="section contact-form-section section-padding">
+            <div class="container">
+                <!-- Contact Wrap Start -->
+                <div class="contact-wrap">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+
+                            {% if messages %}
+                            <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert {% if message.tags %}{{ message.tags }} {% endif %}alert-dismissible" role="alert"><span>{{ message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                            </div>
+                            {% endif %}
+
+                            <div class="form-title text-center">
+                                <h2 class="title">Get Support from our Team</h2>
+                            </div>
+                            <!-- Contact Form Wrap Start -->
+                            <div class="contact-form-wrap">
+                                <form action="{% url 'contact_form' %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- Single Form Start -->
+                                            <div class="single-form">
+                                                {{ forms.name }}
+                                                <!-- <input class="form-control" name='name' type="text" placeholder="Your Name(Jone Hasi)"> -->
+                                            </div>
+                                            <!-- Single Form End -->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Single Form Start -->
+                                            <div class="single-form">
+                                                {{ forms.email }}
+                                                <!-- <input class="form-control" name='email' type="email" placeholder="Your Email(example@gmail.com)"> -->
+                                            </div>
+                                            <!-- Single Form End -->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Single Form Start -->
+                                            <div class="single-form">
+                                                {{ forms.phone }}
+                                                <!-- <input class="form-control" name='phone' type="" placeholder="Phone(+8801977042737)"> -->
+                                            </div>
+                                            <!-- Single Form End -->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Single Form Start -->
+                                            <div class="single-form">
+                                                {{ forms.subject }}
+                                                <!-- <input class="form-control" name='subject' type="text" placeholder="Subject"> -->
+                                            </div>
+                                            <!-- Single Form End -->
+                                        </div>
+                                        <div class="col-md-12">
+                                            <!-- Single Form Start -->
+                                            <div class="single-form">
+                                                {{ forms.message }}
+                                                <!-- <textarea class="form-control" name='message' placeholder="Write A Message"></textarea> -->
+                                            </div>
+                                            <!-- Single Form End -->
+                                        </div>
+                                        <div class="col-md-12">
+                                            <!--  Single Form Start -->
+                                            <div class="form-btn text-center">
+                                                <button class="btn" type="submit">Send Message</button>
+                                            </div>
+                                            <!--  Single Form End -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Contact Form Wrap End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Wrap End -->
+            </div>
+        </div>
+        <!-- Contact Form End -->
+
+        <!-- Contact Map Start -->
+        <!-- <div class="section contact-map-section">
+            <div class="contact-map-wrap">
+                <iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=New%20York%20University%20&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near" title="New York University" aria-label="New York University" frameborder="0"></iframe>
+            </div>
+        </div> -->
+        <!-- Contact Map End -->
+
+
+{% endblock %}

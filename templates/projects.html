@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+        <!-- Page Banner Start -->
+        <div class="section page-banner-section" style="background-image: url({% static '' %}assets/images/page-banner.jpg);">
+            <div class="shape-2"></div>
+            <div class="container">
+                <div class="page-banner-wrap">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Page Banner Content Start -->
+                            <div class="page-banner text-center">
+                                <h2 class="title">Latest Projects</h2>
+                                <ul class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Latest Projects</li>
+                                </ul>
+                            </div>
+                            <!-- Page Banner Content End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner End -->
+
+
+
+        <!-- Blog Standard Start -->
+        <div class="section blog-standard-section section-padding">
+            <div class="container">
+                <!-- Blog Standard Wrap Start -->
+                <div class="blog-standard-wrap">
+                    <div class="row">
+
+                        <div class="col-sm-2 col-md-2"></div>
+                        <div class="col-sm-8 col-md-8">
+                            {% if messages %}
+                            <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert{% if message.tags %} {{ message.tags }} {% endif %}" role="alert">{{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                            </div>
+                            {% endif %}
+                            </div>
+                        <div class="col-sm-2 col-md-2 mb-3"></div>
+                        
+                        <div class="col-lg-8">
+                            <!-- Blog Post Wrap Start -->
+                            <div class="blog-post-wrap">
+                                <!-- Single Blog Start -->
+                                {% for project in projects %}
+                                <div class="single-blog single-blog-post">
+                                    <div class="blog-img">
+                                        <a href="{% url 'project-details' project.slug %}"><img src="{{ project.image.url }}" alt=""></a>
+                                        <div class="top-meta">
+                                            <span class="date"><span>{{ project.create_date|date:"d" }}</span>{{ project.create_date|date:"M" }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <div class="blog-meta">
+                                            <!-- <span><i class="fas fa-user"></i> <a href="#">Andrew Paker</a></span>
+                                            <span><i class="far fa-comments"></i> 0 Comments</span> -->
+                                        </div>
+                                        <h3 class="title"><a href="{% url 'project-details' project.slug %}">{{ project.title }}</a></h3>
+                                        <p>{{ project.description }}</p>
+                                    </div>
+                                    <div class="blog-btn">
+                                        <a class="blog-btn-link" href="{% url 'project-details' project.slug %}">Read Full Article <i class="fas fa-long-arrow-alt-right"></i></a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Single Blog End -->
+
+                                <!-- Techmax Pagination Start -->
+                                <div class="techmax-pagination">
+                                    {% if blogs.has_other_pages %}
+                                    <ul class="pagination justify-content-center">
+                                      {% if blogs.has_previous %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ blogs.previous_page_number }}"><i class="flaticon-back"></i></a></li>
+                                      {% else %}
+                                        <li class="page-item disabled"><a class="page-link"><i class="flaticon-back"></i></a></li>
+                                      {% endif %}
+                                      {% for i in blogs.paginator.page_range %}
+                                        {% if blogs.number == i %}
+                                          <li class="page-item active"><a class="page-link"><span>{{ i }}</span></a></li>
+                                        {% else %}
+                                          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                        {% endif %}
+                                      {% endfor %}
+                                      {% if blogs.has_next %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ blogs.next_page_number }}"><i class="flaticon-next"></i></a></li>
+                                        
+                                      {% else %}
+                                        <li class="disabled page-item"><a class="page-link"><i class="flaticon-next"></i></a></li>
+                                      {% endif %}
+                                    </ul>
+                                  {% endif %}
+                            </div>
+                                <!-- Techmax Pagination End -->
+                            </div>
+                            <!-- Blog Post Wrap Ed -->
+                        </div>
+                        <div class="col-lg-4">
+                            <!-- Blog Sidebar Start -->
+                            <div class="blog-sidebar">
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget sidebar-widget-1">
+                                    <!-- Widget Search Form Start -->
+                                    <form class="search-form" action="{% url 'search_project_data'  %}" method='GET'>
+                                        <input type="text" name="keyword" placeholder="Write your keyword...">
+                                        <button type="submit"><i class="fas fa-search"></i></button>
+                                    </form>
+                                    <!-- Widget Search Form End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget">
+                                    <!-- Widget Title Start -->
+                                    <div class="widget-title">
+                                        <h3 class="title">Recent Projects</h3>
+                                    </div>
+                                    <!-- Widget Title End -->
+                                    <!-- Widget Recent Post Start -->
+                                    <div class="recent-posts">
+                                        <ul>
+                                            {% for project in recent_projects %}
+                                            <li>
+                                                <a class="post-link" href="{% url 'project-details' project.slug %}">
+                                                    <div class="post-thumb">
+                                                        <img src="{{ project.image.url }}" alt="">
+                                                    </div>
+                                                    <div class="post-text">
+                                                        <h4 class="title">{{ project.title }}</h4>
+                                                        <span class="post-meta"><i class="far fa-calendar-alt"></i> {{ project.create_date|date:"M d Y" }}</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <!-- Widget Recent Post End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget">
+                                    <!-- Widget Title Start -->
+                                    <div class="widget-title">
+                                        <h3 class="title">Categories</h3>
+                                    </div>
+                                    <!-- Widget Title End -->
+                                    <!-- Widget Category Start -->
+                                    <ul class="category">
+                                        {% for category in project_categories %}
+                                        <li class="cate-item"><a href="{% url 'projects_search_by_category' category.id %}"><i class="flaticon-next"></i> {{ category.name }} <span class="post-count">{{ category.num_projects }}</span></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                    <!-- Widget Category End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget">
+                                    <!-- Widget Title Start -->
+                                    <div class="widget-title">
+                                        <h3 class="title">Tags</h3>
+                                    </div>
+                                    <!-- Widget Title End -->
+                                    <!-- Widget Category Start -->
+                                    <ul class="sidebar-tag">
+                                        {% for tag in project_tags %}
+                                        <li><a href="{% url 'project_search_by_tag' tag.id %}">{{ tag.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                    <!-- Widget Category End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+                            </div>
+                            <!-- Blog Sidebar End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Standard Wrap End -->
+            </div>
+        </div>
+        <!-- Blog Standard End -->
+
+        <!-- Cta Start -->
+        <!-- <div class="section cta-section">
+            <div class="container">
+                <div class="cta-wrap" style="background-image: url({% static '' %}assets/images/bg/cta-bg.jpg);">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="cta-left">
+                                <h2 class="title">Let's make something beautiful together</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="cta-right">
+                                <span class="number">{{ company.phone }}</span>
+                                <a class="btn" href="{% url 'services' %}">See More Services</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Cta End -->
+
+{% endblock %}

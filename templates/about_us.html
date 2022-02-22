@@ -1,0 +1,443 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+        <!-- Page Banner Start -->
+        <div class="section page-banner-section" style="background-image: url({% static 'assets/images/page-banner.jpg' %});">
+            <div class="shape-2"></div>
+            <div class="container">
+                <div class="page-banner-wrap">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Page Banner Content Start -->
+                            <div class="page-banner text-center">
+                                <h2 class="title">About Us</h2>
+                                <ul class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                                </ul>
+                            </div>
+                            <!-- Page Banner Content End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner End -->
+
+        <!-- About Start -->
+        <div class="section about-section section-padding">
+            <div class="container">
+                <!-- About Wrap Start -->
+                <div class="about-wrap">
+                    <div class="row">
+
+                            {% if messages %}
+                            <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert{% if message.tags %} {{ message.tags }} {% endif %}" role="alert">{{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                            </div>
+                            {% endif %}
+            
+
+                        <div class="col-lg-6">
+                            <!-- About Thumb Wrap Start -->
+                            <div class="about-thumb-wrap">
+                                <div class="about-thumb-small">
+                                    {% if about.primary_image %}
+                                    <img src="{{ about.primary_image.url }}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/about-1.jpg' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="about-thumb-big">
+                                    {% if about.primary_image %}
+                                    <img src="{{ about.secondary_image.url }}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/about-2.jpg' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="about-thumb-shape">
+                                    <img src="{% static 'assets/images/ab-shape.png' %}" alt="">
+                                </div>
+                                <div class="play-btn">
+                                    <a class="popup-video" href="{{ about.video }}"><i class="fas fa-play"></i></a>
+                                </div>
+                            </div>
+                            <!-- About Thumb Wrap End -->
+                        </div>
+                        <div class="col-lg-6">
+                            <!-- About Content Start -->
+                            <div class="about-content">
+                                <div class="section-title">
+                                    <h3 class="sub-title">{{ about.title }}</h3>
+                                    <h2 class="title">{{ about.sub_title }}</h2>
+                                </div>
+                                <p>{{ about.description }}</p>
+                                <div class="about-author-list">
+                                    <!-- <div class="about-author">
+                                        <img src="{% static 'assets/images/sign.png' %}" alt="">
+                                        <h4 class="name">Mita Walker</h4>
+                                        <span class="designation">CEO, Techmax</span>
+                                        <div class="author-img">
+                                            <img src="{% static 'assets/images/author-1.jpg' %}" alt="">
+                                        </div>
+                                    </div> -->
+                                    <div class="about-list">
+                                        <ul>
+                                            {% for special in about.speciality.all %}
+                                            <li><i class="fas fa-check"></i> <a href="#">{{ special.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- About Content End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- About Wrap End -->
+            </div>
+        </div>
+        <!-- About End -->
+
+        <!-- Service Start -->
+        <div class="section service-section service-section-5">
+            <div class="container">
+                <div class="service-wrap">
+                    <div class="row">
+                        {% for step in workflow %}
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Service Item Start -->
+                            <div class="service-item text-center">
+                                <div class="shape-1"></div>
+                                <div class="shape-2">
+                                    <img src="{% static 'assets/images/service/s-shape-2.png' %}" alt="">
+                                </div>
+                                <div class="service-icon">
+                                    {% if step.image %}
+                                    <img src="{{ step.image.url }}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/service/service-4.png' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="service-content">
+                                    <h3 class="title"><a href="#">{{ step.title }}</a></h3>
+                                    <p>{{ step.description }}</p>
+                                </div>
+                            </div>
+                            <!-- Service Item End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+
+        <!--  Skill Start -->
+        <div class="section skill-section skill-section-2">
+            <div class="container">
+                <div class="skill-wrap">
+                    <!--  Skill Content Wrap Start -->
+                    <div class="skill-content-wrap">
+                        <div class="row align-items-center">
+                            <div class="col-lg-5">
+                                <!--  Skill Content Left Start -->
+                                <div class="skill-content-left">
+                                    <div class="experience">
+                                        <h2 class="number">{{ experiences.experince_year }}+</h2>
+                                        <span>Years of experience</span>
+                                    </div>
+                                    <h3 class="title">{{ experiences.title }}</h3>
+                                </div>
+                                <!--  Skill Content Left End -->
+                            </div>
+                            <div class="col-lg-7">
+                                <!--  Skill Content Right Start -->
+                                <div class="skill-content-right">
+                                    <h3 class="title">{{ experiences.quotes }}</h3>
+                                    <!-- <div class="skill-bar-wrap">
+                                        <div class="skill-item">
+                                            <div class="skill-header">
+                                                <h5 class="skill-title">IT Managment</h5>
+                                                <span class="skill-percentage">
+                                                <span class="counter">80</span>
+                                                %
+                                                </span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="bar-inner">
+                                                    <div class="progress-line" data-width="80"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item">
+                                            <div class="skill-header">
+                                                <h5 class="skill-title">Data Security</h5>
+                                                <span class="skill-percentage">
+                                                <span class="counter">90</span>
+                                                %
+                                                </span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="bar-inner">
+                                                    <div class="progress-line" data-width="90"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item">
+                                            <div class="skill-header">
+                                                <h5 class="skill-title">Solution</h5>
+                                                <span class="skill-percentage">
+                                                <span class="counter">90</span>
+                                                %
+                                                </span>
+                                            </div>
+                                            <div class="skill-bar">
+                                                <div class="bar-inner">
+                                                    <div class="progress-line" data-width="90"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <!--  Skill Content Right End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!--  Skill Content Wrap End -->
+                </div>
+            </div>
+        </div>
+        <!--  Skill End -->
+
+        <!-- Counter Start -->
+        <div class="section counter-section" style="background-image: url({% static 'assets/images/bg/counter-bg.jpg' %});">
+            <div class="container">
+                <div class="counter-wrap">
+                    <div class="row">
+                        {% for statistics in project_statistics %}
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Counter Item Start -->
+                            <div class="counter-item text-center">
+                                <div class="counter-icon">
+                                    <img src="{{ statistics.icon.url }}" alt="">
+                                </div>
+                                <div class="counter-text">
+                                    <span>
+                                    <span class="counter">{{ statistics.num_project }}</span>+
+                                    <p>{{ statistics.title }}</p>
+                                </div>
+                            </div>
+                            <!-- Counter Item End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Counter End -->
+
+        <!-- Testimonial Start -->
+        <div class="section testimonial-section-2 testimonial-section-4 section-padding-03">
+            <div class="container">
+                <div class="testimonial-2-wrap">
+                    <div class="section-title2 text-center">
+                        <h2 class="title">{{ testimonial_heading.heading }}</h2>
+                    </div>
+                    <div class="testimonial-slider-wrap">
+                        <div class="swiper-container testimonial-2-active slider-bullet">
+                            <div class="swiper-wrapper">
+                                {% for testi in testimonial %}
+                                <div class="swiper-slide">
+                                    <!-- Single Testimonial Start -->
+                                    <div class="single-testimonial">
+                                        <div class="testimonial-image">
+                                            {% if testi.client.image %}
+                                            <img src="{{ testi.client.image.url }}" alt="">
+                                            {% else %}
+                                            <img src="{% static 'assets/images/author-1.jpg' %}" alt="">
+                                            {% endif %}
+                                        </div>
+                                        <div class="testimonial-content">
+                                            <p>{{ testi.description }}</p>
+                                            <span class="name">{{ testi.client.name }}</span>
+                                            <span class="designation">{{ testi.client.designation }}, {{ testi.client.company_name }}</span>
+                                        </div>
+                                    </div>
+                                    <!-- Single Testimonial End -->
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+        <!-- Brand Logo Start -->
+        <div class="section Brand-section">
+            <div class="container">
+                <!-- Brand Wrapper Start -->
+                <div class="brand-wrapper section-padding text-center">
+                    <h3 class="brand-title">{{ successful_client_heading.heading }} </h3>
+
+                    <!-- Brand Active Start -->
+                    <div class="brand-active">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <!-- Single Brand Start -->
+                                {% for logo in client %}
+                                <div class="swiper-slide single-brand">
+                                    {% if logo.company_logo %}
+                                    <img src="{{ logo.company_logo.url }}" alt="Brand">
+                                    {% else %}
+                                    <img src="{% static 'image/logo.png' %}" alt="Brand">
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                               
+                                <!-- Single Brand End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Brand Active End -->
+                </div>
+                <!-- Brand Wrapper End -->
+            </div>
+        </div>
+        <!-- Brand Logo End -->
+
+        <!-- Contact Start -->
+        <div class="section contact-section contact-section-2 section-padding" style="background-image: url({% static 'assets/images/bg/ab-contact.jpg' %});">
+            <div class="container">
+                <!-- Contact Wrap Start -->
+                <div class="contact-wrap">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-6">
+                            <!-- Contact Info Start -->
+                            <div class="contact-info">
+                                <h3 class="info-title">Need a Quick Query?</h3>
+                                <ul>
+                                    <li>
+                                        <!-- Contact Info Item Start -->
+                                        <div class="contact-info-item d-flex align-items-center">
+                                            <div class="contact-info-icon">
+                                                <i class="flaticon-phone-call"></i>
+                                            </div>
+                                            <div class="contact-info-text">
+                                                <h4 class="title">Contact Number</h4>
+                                                <p>{{ company.phone }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Contact Info Item End -->
+                                    </li>
+                                    <li>
+                                        <!-- Contact Info Item Start -->
+                                        <div class="contact-info-item d-flex align-items-center">
+                                            <div class="contact-info-icon">
+                                                <i class="flaticon-email"></i>
+                                            </div>
+                                            <div class="contact-info-text">
+                                                <h4 class="title">Our Mail</h4>
+                                                <p>{{ company.email }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Contact Info Item End -->
+                                    </li>
+                                    <li>
+                                        <!-- Contact Info Item Start -->
+                                        <div class="contact-info-item d-flex align-items-center">
+                                            <div class="contact-info-icon">
+                                                <i class="flaticon-pin"></i>
+                                            </div>
+                                            <div class="contact-info-text">
+                                                <h4 class="title">Our Location</h4>
+                                                <p>{{ company.address }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Contact Info Item End -->
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Contact Info End -->
+                        </div>
+                        <div class="col-xl-7 col-lg-6">
+                            <!-- Contact Form Start -->
+                            <div class="contact-form">
+                                <div class="contact-form-wrap">
+                                    <div class="heading-wrap text-center">
+                                        <span class="sub-title">Leave us massage</span>
+                                        <h3 class="title">How May We Help You!</h3>
+                                    </div>
+                                    <form action="{% url 'contact_form' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <!-- Single Form Start -->
+                                                <div class="single-form">
+                                                    {{ forms.name }}
+                                                    <!-- <input type="text" placeholder="Name *"> -->
+                                                </div>
+                                                <!-- Single Form End -->
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <!-- Single Form Start -->
+                                                <div class="single-form">
+                                                    {{ forms.email }}
+                                                    <!-- <input type="email" placeholder="Email *"> -->
+                                                </div>
+                                                <!-- Single Form End -->
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <!-- Single Form Start -->
+                                                <div class="single-form">
+                                                    {{ forms.subject }}
+                                                    <!-- <input type="text" placeholder="Subject *"> -->
+                                                </div>
+                                                <!-- Single Form End -->
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <!-- Single Form Start -->
+                                                <div class="single-form">
+                                                    {{ forms.message }}
+                                                    <!-- <textarea placeholder="Write A Message"></textarea> -->
+                                                </div>
+                                                <!-- Single Form End -->
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <!--  Single Form Start -->
+                                                <div class="form-btn">
+                                                    <button class="btn" type="submit">Send Message</button>
+                                                </div>
+                                                <!--  Single Form End -->
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Contact Form End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Wrap End -->
+            </div>
+        </div>
+        <!-- Contact End -->
+
+
+
+{% endblock %}
