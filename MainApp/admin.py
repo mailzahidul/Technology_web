@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import CompanyInfo, Contact, User, Client, TestimonialHeading, Testimonial
 from .models import BrandHeading, HomeBanner, WhyChooseUs, Features
 # Register your models here.
@@ -7,7 +8,12 @@ from .models import BrandHeading, HomeBanner, WhyChooseUs, Features
 admin.site.register(User)
 admin.site.register(Client)
 admin.site.register(BrandHeading)
-admin.site.register(TestimonialHeading)
+
+class TestimonialHeadingAdmin(SummernoteModelAdmin):
+    list_display=['title','active']
+    summernote_fields = ('sub_title',)
+admin.site.register(TestimonialHeading, TestimonialHeadingAdmin)
+
 admin.site.register(Testimonial)
 admin.site.register(HomeBanner)
 admin.site.register(WhyChooseUs)

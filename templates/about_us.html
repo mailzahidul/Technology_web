@@ -35,17 +35,16 @@
                 <div class="about-wrap">
                     <div class="row">
 
-                            {% if messages %}
-                            <div class="messages">
-                            {% for message in messages %}
-                                <div class="alert{% if message.tags %} {{ message.tags }} {% endif %}" role="alert">{{ message }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            {% endfor %}
+                        {% if messages %}
+                        <div class="messages">
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags %}{{ message.tags }} {% endif %}alert-dismissible fade show" role="alert">
+                                <span>{{ message }}</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                            {% endif %}
+                        {% endfor %}
+                        </div>
+                        {% endif %}
             
 
                         <div class="col-lg-6">
@@ -79,7 +78,7 @@
                             <div class="about-content">
                                 <div class="section-title">
                                     <h3 class="sub-title">{{ about.title }}</h3>
-                                    <h2 class="title">{{ about.sub_title }}</h2>
+                                    <h2 class="title">{{ about.sub_title|safe }}</h2>
                                 </div>
                                 <p>{{ about.description }}</p>
                                 <div class="about-author-list">
@@ -157,7 +156,7 @@
                                         <h2 class="number">{{ experiences.experince_year }}+</h2>
                                         <span>Years of experience</span>
                                     </div>
-                                    <h3 class="title">{{ experiences.title }}</h3>
+                                    <h3 class="title">{{ experiences.title|safe }}</h3>
                                 </div>
                                 <!--  Skill Content Left End -->
                             </div>
@@ -252,7 +251,7 @@
             <div class="container">
                 <div class="testimonial-2-wrap">
                     <div class="section-title2 text-center">
-                        <h2 class="title">{{ testimonial_heading.heading }}</h2>
+                        <h2 class="title">{{ testimonial_heading.sub_title|safe }}</h2>
                     </div>
                     <div class="testimonial-slider-wrap">
                         <div class="swiper-container testimonial-2-active slider-bullet">

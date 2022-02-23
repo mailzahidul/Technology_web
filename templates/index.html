@@ -19,14 +19,14 @@
                         <div class="hero-content">
                             <h3 class="sub-title" data-aos-delay="600" data-aos="fade-up">{{ home_banner.title }}</h3>
                             {% if home_banner.choose_blog %}
-                            <h2 class="title" data-aos="fade-up" data-aos-delay="700">{{ home_banner.choose_blog.title }}</h2>
+                            <h2 class="title" data-aos="fade-up" data-aos-delay="700">{{ home_banner.choose_blog.title|truncatewords:4 }}</h2>
                             <p data-aos="fade-up" data-aos-delay="800">{{ home_banner.choose_blog.description|truncatewords:15 }}</p>
                             <div class="hero-btn" data-aos="fade-up" data-aos-delay="900">
                                 <a class="btn" href="{% url 'blog-details' home_banner.choose_blog.slug %}">Read More</a>
                             </div>
                             {% endif %}
                             {% if home_banner.choose_project %}
-                            <h2 class="title" data-aos="fade-up" data-aos-delay="700">{{ home_banner.choose_project.title }}</h2>
+                            <h2 class="title" data-aos="fade-up" data-aos-delay="700">{{ home_banner.choose_project.title|truncatewords:4 }}</h2>
                             <p data-aos="fade-up" data-aos-delay="800">{{ home_banner.choose_project.description|truncatewords:15 }}</p>
                             
                             <div class="hero-btn" data-aos="fade-up" data-aos-delay="900">
@@ -113,7 +113,7 @@
                             <div class="about-content">
                                 <div class="section-title">
                                     <h3 class="sub-title">{{ about.title }}</h3>
-                                    <h2 class="title">{{ about.sub_title }}</h2>
+                                    <h2 class="title">{{ about.sub_title|safe }}</h2>
                                 </div>
                                 <p>{{ about.description }}</p>
                                 <div class="about-author-list">
@@ -157,7 +157,7 @@
                                         <h2 class="number">{{ experiences.experince_year }}+</h2>
                                         <span>Years of experience</span>
                                     </div>
-                                    <h3 class="title">{{ experiences.title }}</h3>
+                                    <h3 class="title">{{ experiences.title|safe }}</h3>
                                 </div>
                                 <!--  Skill Content Left End -->
                             </div>
@@ -443,7 +443,7 @@
                         <div class="col-xl-4">
                             <div class="section-title">
                                 <h3 class="sub-title">{{ testimonial_heading.title }}</h3>
-                                <h2 class="title">{{ testimonial_heading.sub_title }} </h2>
+                                <h2 class="title">{{ testimonial_heading.sub_title|safe }} </h2>
                             </div>
                         </div>
                         <div class="col-xl-8">
@@ -524,7 +524,7 @@
                                             <span><i class="fas fa-user"></i> <a href="#">{{ blog.author.get_fullname }}</a></span>
                                             <!-- <span><i class="far fa-comments"></i> 0 Comments</span> -->
                                         </div>
-                                        <h3 class="title"><a href="blog-details.html">{{ blog.title|truncatewords:7 }}</a></h3>
+                                        <h3 class="title"><a href="{% url 'blog-details' blog.slug %}">{{ blog.title|truncatewords:7 }}</a></h3>
                                         <p>{{ blog.description|truncatewords:12 }}</p>
                                     </div>
                                     <div class="blog-btn">

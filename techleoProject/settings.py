@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonenumber_field',
     'django_social_share',
+    'django_summernote',
     'MainApp',
     'about',
     'service',
@@ -129,6 +130,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',

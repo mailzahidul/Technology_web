@@ -42,7 +42,7 @@ class OurSpeciality(models.Model):
 
 class About(models.Model):
     title = models.CharField(max_length=200)
-    sub_title = models.CharField(max_length=255)
+    sub_title = models.TextField(max_length=255)
     primary_image = models.ImageField(upload_to='about/', blank=True, null=True)
     secondary_image = models.ImageField(upload_to='about/', blank=True, null=True)
     video = models.URLField(blank=True, null=True)

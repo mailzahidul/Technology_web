@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from django.utils.html import format_html
 from .models import ServiceHeading, Services
 from .models import ServicePricePackage, ServicePriceCategory, ServicePriceFeature
@@ -19,7 +20,15 @@ admin.site.register(Services, ServicesAdmin)
 
 admin.site.register(ProjectQuotes)
 
-admin.site.register(ServicePriceHeading)
+class ServicesPriceHeadingAdmin(SummernoteModelAdmin):
+    list_display=['title','active']
+    summernote_fields = ('title',)
+
+admin.site.register(ServicePriceHeading, ServicesPriceHeadingAdmin)
+
+
+
+
 admin.site.register(ServicePriceCategory)
 admin.site.register(ServicePriceFeature)
 admin.site.register(ServicePricePackage)

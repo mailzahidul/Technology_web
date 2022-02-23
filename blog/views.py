@@ -77,7 +77,7 @@ def tag_search(request, id):
 def search_data(request):
     context = {}
     blog_list= Blog.objects.filter(active=True).all()
-    search = request.GET.get('keyword')
+    search = request.GET.get('query_data')
     if search is not None:
         posts = blog_list.filter(
         Q(title__icontains=search) | 
@@ -92,6 +92,7 @@ def search_data(request):
             return render(request, 'blog.html', context)
         else:
             messages.error(request, "There is no similar post here..", extra_tags='alert-danger')
+            context['blogs'] = blog_list
     return render(request, 'blog.html', context)
 
 

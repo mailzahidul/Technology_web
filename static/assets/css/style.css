@@ -8479,6 +8479,7 @@ select {
   padding: 55px;
   border-radius: 10px;
   margin-top: 70px;
+  height: 230px;
 }
 
 @media only screen and (max-width: 1199px) {

@@ -1,12 +1,24 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import Workflow, About, OurSpeciality, ProjectStatistics
 from .models import Designation, TeamMember, TeamHeading, Experience
 # Register your models here.
 
 admin.site.register(Workflow)
-admin.site.register(Experience)
+
+
+class ExperienceAdmin(SummernoteModelAdmin):
+    list_display=['title','active']
+    summernote_fields = ('title',)
+
+admin.site.register(Experience, ExperienceAdmin)
 admin.site.register(ProjectStatistics)
-admin.site.register(About)
+
+class AboutAdmin(SummernoteModelAdmin):
+    list_display=['title','active']
+    summernote_fields = ('sub_title',)
+
+admin.site.register(About, AboutAdmin)
 admin.site.register(OurSpeciality)
 
 

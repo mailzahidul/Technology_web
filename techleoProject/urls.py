@@ -10,6 +10,7 @@ urlpatterns = [
     path('about_us/', include('about.urls')),
     path('services/', include('service.urls')),
     path('projects/', include('projects.urls')),
+    path('summernote/', include('django_summernote.urls')),
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -17,7 +18,6 @@ urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.ME
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 else:
     settings.DEBUG = True
     urlpatterns += static(

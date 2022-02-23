@@ -88,7 +88,7 @@
                             <!-- <div class="blog-details-text">
                                 <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of incredible freelance talent for all your software development needs. specializes in technological and IT-related services such as product engineering, warranty management, building cloud, infrastructure, network, etc. </p>
                             </div> -->
-                            <p>{{ blog_details.description }}</p>
+                            <p>{{ blog_details.description|safe }}</p>
                             
                             <!-- Blog Details Text End -->
                             <!-- Blog Details Tag Share Start -->
@@ -248,8 +248,8 @@
                         <!-- Sidebar Widget Start -->
                         <div class="sidebar-widget sidebar-widget-1">
                             <!-- Widget Search Form Start -->
-                            <form class="search-form" action="{% url 'search_data'  %}" method='GET'>
-                                <input type="text" name="keyword" placeholder="Write your keyword...">
+                            <form class="search-form" action="{% url 'search_data' %}" method='GET'>
+                                <input type="text" name="query_data" placeholder="Write your keyword...">
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
                             <!-- Widget Search Form End -->
@@ -331,28 +331,24 @@
 
 
 <!-- Cta Start -->
-<div class="section cta-section">
+<!-- <div class="section cta-section">
     <div class="container">
         <div class="cta-wrap" style="background-image: url(assets/images/bg/cta-bg.jpg);">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <!-- Cta Left Start -->
                     <div class="cta-left">
                         <h2 class="title">Let's make something beautiful together</h2>
                     </div>
-                    <!-- Cta Left End -->
                 </div>
                 <div class="col-lg-6">
-                    <!-- Cta Right Start -->
                     <div class="cta-right">
                         <span class="number">{{ company.phone }}</span>
                         <a class="btn" href="{% url 'projects' %}">See More Projects</a>
                     </div>
-                    <!-- Cta Right End -->
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Cta End -->
 {% endblock %}

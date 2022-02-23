@@ -34,7 +34,7 @@
         <!-- Features Wrap Start -->
         <div class="features-wrap-3">
             <div class="section-title2 text-center">
-                <h2 class="title">{{ service_section.title }}</h2>
+                <h2 class="title">{{ experiences.title|safe }}</h2>
             </div>
             <div class="features-content-wrap">
                 <div class="row">
@@ -84,7 +84,7 @@
                         <!--  Skill Content Right Start -->
                         <div class="skill-content-right">
                             <div class="section-title2">
-                                <h2 class="title">{{ about.sub_title }}</h2>
+                                <h2 class="title">{{ about.sub_title|safe }}</h2>
                             </div>
                             <!-- <div class="skill-bar-wrap">
                                         <div class="skill-item">
@@ -177,7 +177,7 @@
         <!-- Pricing Wrap Start -->
         <div class="pricing-wrap">
             <div class="section-title2 text-center">
-                <h2 class="title">{{ s_price_heading.title }}</h2>
+                <h2 class="title">{{ s_price_heading.title|safe }}</h2>
                 <p>{{ s_price_heading.description }}</p>
             </div>
             <!-- Pricing Content Wrap Start -->
@@ -227,7 +227,7 @@
     <div class="container">
         <div class="testimonial-2-wrap">
             <div class="section-title2 text-center">
-                <h2 class="title">{{ testimonial_heading.heading }}</h2>
+                <h2 class="title">{{ testimonial_heading.sub_title|safe }}</h2>
             </div>
             <div class="testimonial-slider-wrap">
                 <div class="swiper-container testimonial-2-active slider-bullet">
@@ -246,8 +246,7 @@
                                 <div class="testimonial-content">
                                     <p>{{ testi.description }}</p>
                                     <span class="name">{{ testi.client.name }}</span>
-                                    <span class="designation">{{ testi.client.designation }}, {{
-                                        testi.client.company_name }}</span>
+                                    <span class="designation">{{ testi.client.designation }}, {{testi.client.company_name }}</span>
                                 </div>
                             </div>
                             <!-- Single Testimonial End -->
